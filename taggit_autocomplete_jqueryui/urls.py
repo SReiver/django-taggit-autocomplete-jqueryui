@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from django.conf.urls.defaults import patterns, url
+from django.conf.urls import *
 
 urlpatterns = patterns('taggit_autocomplete_jqueryui.views',
     url(r'^json$', 'tag_list_view',
