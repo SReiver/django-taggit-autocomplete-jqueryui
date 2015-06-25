@@ -27,7 +27,7 @@
 			var tags = $input.val().split(',');
 			var id = "#"+$input.attr('id');
 			$.each(tags, function (i, tag) {
-				addTagToList($.trim(tag), id);
+				addTagToList($.trim(tag.toLowerCase()), id);
 			});
 			$input.val('');
 		}
