@@ -5,58 +5,60 @@
 			$hidden,
 			$taglist;
 
-		function updateTags () {
-			$hidden.val(
-				$taglist.children('li')
-					.map(function (i, el) {
-						return $(el).attr('data-tag');
-					})
-					.get()
-					.join(', ')
-			);
+		function updateTags (id) {
+			var new_val = [];
+			$taglist[id].find('li').each(function(i,el){
+				new_val.push($(el).attr('data-tag'))
+			});
+			$hidden[id].val(new_val.join(', '));
 		}
 
 		function remove (e) {
 			var $target = $(e.target).closest('.remove');
+			var id = "#"+$(e.target).closest('ul').next('input').attr('id')+"_autocomplete";
 			e.preventDefault();
 			if ($target.length > 0) {
 				$target.parent().remove();
-				updateTags();
+				updateTags(id);
 			}
 		}
 
 		function addTags ($input) {
 			var tags = $input.val().split(',');
+			var id = "#"+$input.attr('id');
 			$.each(tags, function (i, tag) {
-				addTagToList($.trim(tag.toLowerCase()));
+				addTagToList($.trim(tag), id);
 			});
 			$input.val('');
 		}
 
-		function addTagToList (tag) {
-			if ($taglist.children('li[data-tag="' + tag + '"]').length === 0) {
-				$taglist.append(
+		function addTagToList (tag, id) {
+			if ($taglist[id].children('li[data-tag="' + tag + '"]').length === 0) {
+				$taglist[id].append(
 					'<li data-tag="' + tag + '">' +
 						'<span class="name">' + tag + '</span>' +
 						'<a href="#" class="remove">x</a>' +
 					'</li>'
 				);
-				updateTags();
+				updateTags(id);
 			}
 		}
 
 		return {
 			init: function (inputSelector) {
 				var $input = $(inputSelector);
-				$hidden = $('#' + $input.attr('id').replace('_autocomplete', ''));
-				$taglist = $hidden.parent().children('.tags');
+				if (typeof $hidden == 'undefined')
+					$hidden = {};
+				$hidden[inputSelector] = $('#' + $input.attr('id').replace('_autocomplete', ''));
+				if (typeof $taglist == 'undefined')
+					$taglist = {};
+				$taglist[inputSelector] = $hidden[inputSelector].parent().children('.tags');
 
 				// Hooks up event listenere to enable remove
-				$taglist.click(remove);
+				$taglist[inputSelector].click(remove);
 
 				// Adds enter key event on autocomplete input
-				$input[$.browser.safari || $.browser.msie ?
-						'keydown' : 'keypress'](function (e) {
+				$input['keypress'](function (e) {
 					if (e.keyCode === 13) {
 						e.preventDefault();
 						addTags($(e.target));
@@ -66,7 +68,7 @@
 				// Make sure tags in the text input field are added before the form is submitted
 				$($input[0].form).submit(function () {
 					if ($input.val().length > 0) {
-						addTags($input);
+						addTags($input,'#'+$input.attr(id).replace('_autocomplete', ''));
 					}
 				});
 			},
@@ -109,4 +111,3 @@
 	};
 
 })(window, window.jQuery || django.jQuery);
-
