@@ -19,7 +19,7 @@ class TagAutocomplete(Input):
             )
         }
         js = (
-            'taggit_autocomplete_jqueryui/js/jquery-ui-1.8.20.custom.min.js',
+            'taggit_autocomplete_jqueryui/js/jquery-ui-1.11.4.min.js',
             'taggit_autocomplete_jqueryui/js/autocomplete.js',
         )
 
