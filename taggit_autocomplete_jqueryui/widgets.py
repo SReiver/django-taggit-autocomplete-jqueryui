@@ -14,7 +14,7 @@ class TagAutocomplete(Input):
     class Media:
         css = {
             'all': (
-                'taggit_autocomplete_jqueryui/css/jquery-ui-1.8.20.custom.css',
+                'taggit_autocomplete_jqueryui/css/jquery-ui.css',
                 'taggit_autocomplete_jqueryui/css/autocomplete.css',
             )
         }
