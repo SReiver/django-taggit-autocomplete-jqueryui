@@ -3,11 +3,12 @@ import json
 from django.db.models.loading import cache
 from django.http import HttpResponse
 from django.utils.datastructures import MultiValueDictKeyError
-
-TAGGIT_AUTOCOMPLETE_TAG_MODEL = 'taggit.Tag'
+from django.conf import settings
 
 
 def tag_list_view(request):
+    if 'TAGGIT_AUTOCOMPLETE_TAG_MODEL' not in settings:
+        settings.TAGGIT_AUTOCOMPLETE_TAG_MODEL = 'taggit.Tag'
     app_label, model_class = TAGGIT_AUTOCOMPLETE_TAG_MODEL.split('.')
     Tag = cache.get_model(app_label, model_class)
     try:
