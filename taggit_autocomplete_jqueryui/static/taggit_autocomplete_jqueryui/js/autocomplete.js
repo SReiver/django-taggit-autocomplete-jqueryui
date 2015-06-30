@@ -59,7 +59,7 @@
 
 				// Adds enter key event on autocomplete input
 				$input['keypress'](function (e) {
-					if (e.keyCode === 13) {
+					if (e.keyCode === 13 || e.charCode === 44) {
 						e.preventDefault();
 						addTags($(e.target));
 					}
