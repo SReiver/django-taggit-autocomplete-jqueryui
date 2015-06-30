@@ -7,7 +7,7 @@ from django.conf import settings
 
 
 def tag_list_view(request):
-    if 'TAGGIT_AUTOCOMPLETE_TAG_MODEL' not in settings:
+    if not hasattr(settings,'TAGGIT_AUTOCOMPLETE_TAG_MODEL'):
         settings.TAGGIT_AUTOCOMPLETE_TAG_MODEL = 'taggit.Tag'
     app_label, model_class = TAGGIT_AUTOCOMPLETE_TAG_MODEL.split('.')
     Tag = cache.get_model(app_label, model_class)
