@@ -76,7 +76,7 @@
 			autocomplete: function (e, ui) {
 				e.preventDefault();
 				$(e.target).val('');
-				addTagToList(ui.item.value);
+				addTagToList(ui.item.value, '#'+e.target.id);
 			}
 		};
 	})();
