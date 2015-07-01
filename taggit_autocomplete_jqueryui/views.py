@@ -9,7 +9,7 @@ from django.conf import settings
 def tag_list_view(request):
     if not hasattr(settings,'TAGGIT_AUTOCOMPLETE_TAG_MODEL'):
         settings.TAGGIT_AUTOCOMPLETE_TAG_MODEL = 'taggit.Tag'
-    app_label, model_class = TAGGIT_AUTOCOMPLETE_TAG_MODEL.split('.')
+    app_label, model_class = settings.TAGGIT_AUTOCOMPLETE_TAG_MODEL.split('.')
     if hasattr(settings,'TAGGIT_AUTOCOMPLETE_TAG_FILTER'):
         kname, kval = settings.TAGGIT_AUTOCOMPLETE_TAG_FILTER.split('.')
         kwargs = {kname : kval }
