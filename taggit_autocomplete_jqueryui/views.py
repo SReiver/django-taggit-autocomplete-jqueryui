@@ -18,7 +18,7 @@ def tag_list_view(request):
     Tag = cache.get_model(app_label, model_class)
     try:
         tags = (Tag.objects.
-                filter(name__istartswith=request.GET['term']).filter(**kwargs)
+                filter(name__istartswith=request.GET['term']).filter(**kwargs).
                 values_list('name', flat=True))
     except MultiValueDictKeyError:
         tags = []
