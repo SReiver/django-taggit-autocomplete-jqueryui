@@ -32,7 +32,7 @@ class TagAutocomplete(Input):
             tags = [o.tag for o in value.select_related('tag')]
             value = edit_string_for_tags(tags)
         elif value is not None:
-            tags = split_strip(value)
+            tags = [ Tag(name=n) for n in split_strip(value)]
 
         json_view = reverse('taggit_autocomplete_jqueryui_tag_list')
 
