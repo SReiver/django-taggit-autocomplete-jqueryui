@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse
 from django.utils.safestring import mark_safe
 
 from taggit.utils import edit_string_for_tags, split_strip
+from taggit.models import Tag
 
 MEDIA_URL = '/media/taggit_autocomplete_jqueryui'
 
