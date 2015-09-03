@@ -10,7 +10,7 @@
 			$taglist[id].find('li').each(function(i,el){
 				new_val.push($(el).attr('data-tag'))
 			});
-			$hidden[id].val(new_val.join(', '));
+			$hidden[id].val('"' + new_val.join('", "') + '"');
 		}
 
 		function remove (e) {
