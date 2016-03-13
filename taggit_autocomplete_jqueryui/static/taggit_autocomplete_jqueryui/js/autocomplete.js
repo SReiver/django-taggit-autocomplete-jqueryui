@@ -68,7 +68,7 @@
 				// Make sure tags in the text input field are added before the form is submitted
 				$($input[0].form).submit(function () {
 					if ($input.val().length > 0) {
-						addTags($input,'#'+$input.attr(id).replace('_autocomplete', ''));
+						addTags($input);
 					}
 				});
 			},
