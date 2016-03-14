@@ -21,7 +21,7 @@ class TagAutocomplete(Input):
         }
         js = (
             'taggit_autocomplete_jqueryui/js/jquery-ui-1.11.4.min.js',
-            'taggit_autocomplete_jqueryui/js/autocomplete.js',
+            'taggit_autocomplete_jqueryui/js/autocomplete.1.1.js',
         )
 
     def render(self, name, value, attrs=None):
