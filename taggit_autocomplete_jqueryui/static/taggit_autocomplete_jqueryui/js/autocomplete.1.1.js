@@ -33,7 +33,7 @@
 		}
 
 		function addTagToList (tag, id) {
-			tag = tag.replace(/"/,'');
+			tag = tag.replace(/"/g,'');
 			if (tag && $taglist[id].children('li[data-tag="' + tag + '"]').length === 0) {
 				$taglist[id].append(
 					'<li data-tag="' + tag + '">' +
