@@ -14,7 +14,7 @@ class TaggableManagerAutocomplete(TaggableManager):
         return field
 
     def save_form_data(self, instance, value):
-        value = map(lambda v: v.strip().lower(), value)
+        value = map(lambda v: v.strip(), value)
         getattr(instance, self.name).set(*value)
 
 if 'south' in settings.INSTALLED_APPS:
