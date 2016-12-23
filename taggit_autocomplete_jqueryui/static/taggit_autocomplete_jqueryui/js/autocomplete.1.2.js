@@ -27,16 +27,16 @@
 			var tags = $input.val().split(',');
 			var id = "#"+$input.attr('id');
 			$.each(tags, function (i, tag) {
-				addTagToList($.trim(tag.toLowerCase()), id);
+				addTagToList($.trim(tag), id);
 			});
 			$input.val('');
 		}
 
 		function addTagToList (tag, id) {
 			tag = tag.replace(/"/g,'');
-			if (tag && $taglist[id].children('li[data-tag="' + tag + '"]').length === 0) {
+			if (tag && $taglist[id].children('li[data-slug="' + tag.toLowerCase() + '"]').length === 0) {
 				$taglist[id].append(
-					'<li data-tag="' + tag + '">' +
+					'<li data-slug="' + tag.toLowerCase() + '" data-tag="' + tag + '">' +
 						'<span class="name">' + tag + '</span>' +
 						'<a href="#" class="remove">x</a>' +
 					'</li>'
