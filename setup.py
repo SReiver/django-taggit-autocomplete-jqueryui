@@ -3,7 +3,7 @@ from setuptools import find_packages
 
 setup(
     name='django-taggit-autocomplete-jqueryui',
-    version='0.3.3dev',
+    version='0.3.3dev0',
     packages=find_packages(),
     include_package_data=True,
     license='BSD License',
