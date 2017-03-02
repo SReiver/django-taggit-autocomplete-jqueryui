@@ -10,7 +10,6 @@ MEDIA_URL = '/media/taggit_autocomplete_jqueryui'
 
 
 class TagAutocomplete(Input):
-    input_type = 'hidden'
 
     class Media:
         css = {
@@ -25,6 +24,7 @@ class TagAutocomplete(Input):
         )
 
     def render(self, name, value, attrs=None):
+        attrs.update({"class": "hidden"})
         tags = []
         if value is not None and not isinstance(value, basestring):
             # value contains a list a TaggedItem instances
