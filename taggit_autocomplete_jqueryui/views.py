@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
-from django.db.models.loading import cache
+from django.apps import apps
 from django.http import HttpResponse
 from django.utils.datastructures import MultiValueDictKeyError
 from django.conf import settings
@@ -15,7 +15,7 @@ def tag_list_view(request):
         kwargs = {kname : kval }
     else:
         kwargs = {}
-    Tag = cache.get_model(app_label, model_class)
+    Tag = apps.get_model(app_label, model_class)
     try:
         tags = (Tag.objects.
                 filter(name__istartswith=request.GET['term']).filter(**kwargs).
