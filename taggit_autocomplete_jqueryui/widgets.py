@@ -23,6 +23,9 @@ class TagAutocomplete(Input):
             'taggit_autocomplete_jqueryui/js/autocomplete.1.2.js',
         )
 
+    def use_required_attribute(self, initial):
+        return False
+
     def render(self, name, value, attrs=None):
         attrs.update({"class": "hidden"})
         tags = []
